@@ -2,7 +2,7 @@ import React from "react";
 import {Router, browserHistory, Route, IndexRoute} from "react-router";
 import {syncHistoryWithStore} from "react-router-redux";
 import SearchContainer from "./components/Search/SearchContainer";
-import SearchResultsContainer from "./components/SearchResults/SearchResultContainer";
+import SearchResultsContainer from "./components/SearchResults/SearchResultsContainer";
 import App from "./layouts/AppLayout";
 
 export const AppRouter = ({store}) => (
