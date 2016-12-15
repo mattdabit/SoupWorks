@@ -1,29 +1,22 @@
-var webpack = require('webpack')
+var webpack = require('webpack');
+var path = require('path');
+
+var BUILD_DIR = path.resolve(__dirname, 'public');
+var APP_DIR = path.resolve(__dirname, 'src');
 
 var config = {
-  entry: './src/index',
-  module: {
-    loaders: [
-      { test: /\.js$/, loaders: [ 'babel' ], exclude: /node_modules/ }
-    ]
-  },
+  entry: APP_DIR + '/app.js',
   output: {
-    library: 'ReactRouterRedux',
-    libraryTarget: 'umd'
+    path: BUILD_DIR,
+    filename: 'app.bundle.js'
   },
-  plugins: [
-    new webpack.optimize.OccurenceOrderPlugin()
-  ]
-}
-
-if (process.env.NODE_ENV === 'production') {
-  config.plugins.push(
-    new webpack.optimize.UglifyJsPlugin({
-      compressor: {
-        warnings: false
+  module : {
+    loaders : [
+      {
+        include : APP_DIR,
+        loader : 'babel'
       }
-    })
-  )
-}
-
-module.exports = config
+    ]
+  }
+};
+module.exports = config;
