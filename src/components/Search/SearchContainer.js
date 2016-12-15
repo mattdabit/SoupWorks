@@ -1,11 +1,20 @@
 import React from "react";
-import {reduxForm, Field} from "redux-form";
+import {reduxForm} from "redux-form";
 import {connect} from "react-redux";
 import SearchComponent from "./SearchComponent";
+import {browserHistory} from "react-router";
+import {saveIngredients} from "./searchActions";
 
-var reduxFormConfig = {
+const mapDispatchToProps = (dispatch) => ({
+    loadRecipes: (recipes) => {
+        dispatch(saveIngredients(recipes));
+        browserHistory.push("search")
+    }
+});
+
+const reduxFormConfig = {
     form: 'search',
 };
 
 const SearchContainer = reduxForm(reduxFormConfig)(SearchComponent);
-export default connect()(SearchContainer);
+export default connect(null, mapDispatchToProps)(SearchContainer);
